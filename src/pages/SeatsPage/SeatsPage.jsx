@@ -51,15 +51,15 @@ export default function SeatsPage(props) {
 
             <CaptionContainer>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle Borda="#0E7D71" Fundo="#1AAE9E"/>
                     Selecionado
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle Borda="#7B8B99" Fundo="#C3CFD9" />
                     Disponível
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle Borda="#F7C52B" Fundo="#FBE192"/>
                     Indisponível
                 </CaptionItem>
             </CaptionContainer>
@@ -153,8 +153,8 @@ const CaptionContainer = styled.div`
     margin: 20px;
 `
 const CaptionCircle = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
+    border: 1px solid ${props => props.Borda};         // Essa cor deve mudar
+    background-color: ${props => props.Fundo};    // Essa cor deve mudar
     height: 25px;
     width: 25px;
     border-radius: 25px;
