@@ -31,7 +31,7 @@ export default function SessionsPage() {
             <div>carregando asdas</div>
         )
     }
-    
+    console.log(horarios)
 
     return (
         <PageContainer>
@@ -42,10 +42,8 @@ export default function SessionsPage() {
                     <SessionContainer key={horario.id}>
                         {horario.weekday} - {horario.date}
                         <ButtonsContainer>
-                            <Link to="/assentos/1">
-                                <button>{horario.showtimes[0].name}</button>
-                                <button>{horario.showtimes[1].name}</button>
-                            </Link>
+                            <Link to={`/assentos/${horario.showtimes[0].id}`}><button>{horario.showtimes[0].name}</button> </Link>
+                            <Link to={`/assentos/${horario.showtimes[1].id}`}><button>{horario.showtimes[1].name}</button></Link>
                         </ButtonsContainer>
                     </SessionContainer>)}
             </div>

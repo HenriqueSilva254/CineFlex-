@@ -1,19 +1,51 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SeatsPage(props) {
 
-  
+export default function SeatsPage(props) {
+    const [horarios, setHorarios] = useState(undefined)
+    const [color, setColor] = useState({corBorda: "#808F9D", corFundo:"#C3CFD9" });
+    const [Assento, setAssento] = useState([])
+    const parametros = useParams()
     
+
+    useEffect(() => {
+
+        const url = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${parametros.idHorario}/seats`
+        const promisse = axios.get(url)
+
+        promisse.then(props => {
+            setHorarios(props.data)
+            //setFilme({ titulo: props.data.title, url: props.data.posterURL })
+        })
+        promisse.catch(erro => console.log(erro.response.data))
+
+    }, [])
+    
+    console.log(horarios)
+    console.log(Assento)
+    
+
+
+    if (horarios === undefined) {
+        return (
+            <div>carregando asdas</div>
+        )
+    }
+
     return (
         <PageContainer>
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                <SeatItem>01</SeatItem>
-                <SeatItem>02</SeatItem>
-                <SeatItem>03</SeatItem>
-                <SeatItem>04</SeatItem>
-                <SeatItem>05</SeatItem>
+                {horarios.seats.map(assento => 
+                
+                <SeatItem disabled={!assento.isAvailable} onClick={()=> MudarCorAssentos(assento.name)} habilitar={assento.isAvailable} corBorda={color.corBorda} corFundo={color.corFundo} key={assento.id}>
+                    {assento.name}
+                </SeatItem>)}
+                
             </SeatsContainer>
 
             <CaptionContainer>
@@ -43,16 +75,28 @@ export default function SeatsPage(props) {
 
             <FooterContainer>
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    <img src={horarios.movie.posterURL}  alt="poster" />
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
-                    <p>Sexta - 14h00</p>
+                    <p> {horarios.movie.title} </p>
+                    <p>{horarios.day.weekday} - {horarios.name}</p>
                 </div>
             </FooterContainer>
 
         </PageContainer>
     )
+                
+    function MudarCorAssentos(props){
+        const NumeroCadeira = props
+        for(let i = -1; i < Assento.length; i++){
+            if(NumeroCadeira !== Assento[i]){
+                Assento.push(NumeroCadeira)
+                console.log(Assento)
+            }
+        }
+        
+    }
+    
 }
 
 const PageContainer = styled.div`
@@ -114,9 +158,9 @@ const CaptionItem = styled.div`
     align-items: center;
     font-size: 12px;
 `
-const SeatItem = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
+const SeatItem = styled.button`
+    border: 1px solid ${props => props.habilitar === false?'#F7C52B': `${props.corBorda}`};;         // Essa cor deve mudar
+    background-color: ${props => props.habilitar === false?'#FBE192': `${props.corFundo}`};    // Essa cor deve mudar
     height: 25px;
     width: 25px;
     border-radius: 25px;
