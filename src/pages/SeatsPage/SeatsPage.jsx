@@ -8,6 +8,7 @@ export default function SeatsPage(props) {
     const [horarios, setHorarios] = useState(undefined)
     const [color, setColor] = useState({corBorda: "#808F9D", corFundo:"#C3CFD9" });
     const [Assento, setAssento] = useState([])
+    const [AssentoRepetido, setAssentoRepetido] = useState([])
     const parametros = useParams()
     
 
@@ -88,11 +89,21 @@ export default function SeatsPage(props) {
                 
     function MudarCorAssentos(props){
         const NumeroCadeira = props
-        for(let i = -1; i < Assento.length; i++){
+        let repetidos = 0
+        let repeticaoArray = 0
+        for(let i = -1 ; i < Assento.length; i++){
             if(NumeroCadeira !== Assento[i]){
-                Assento.push(NumeroCadeira)
-                console.log(Assento)
+                repetidos = NumeroCadeira
+            }else{
+                repeticaoArray = 1
+                repetidos = 0
             }
+        }
+
+        if(repetidos !== 0 && repeticaoArray === 0){
+            
+            Assento.push(NumeroCadeira)
+            console.log(Assento)
         }
         
     }
