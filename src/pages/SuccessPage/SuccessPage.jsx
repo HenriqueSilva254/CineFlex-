@@ -8,24 +8,24 @@ console.log(info)
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
 
-            <TextContainer>
+            <TextContainer data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
                 <p>{info.filme}</p>
                 <p>{info.data} - {info.horario}</p>
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
                 {info.assentos.map(assentos => <p>Assento {assentos}</p>)}
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="client-info">
                 <strong><p>Comprador</p></strong>
                 <p>Nome: {info.name}</p>
                 <p>CPF: {info.cpf}</p>
             </TextContainer>
 
-            <Link to="/"><Home>Voltar para Home</Home></Link>
+            <Link data-test="go-home-btn" to="/"><Home>Voltar para Home</Home></Link>
         </PageContainer>
     )
 }

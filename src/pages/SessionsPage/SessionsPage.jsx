@@ -46,16 +46,16 @@ export default function SessionsPage(props) {
             <div>
                 {horarios.map(horario =>
 
-                    <SessionContainer key={horario.id}>
+                    <SessionContainer data-test="movie-day" key={horario.id}>
                         {horario.weekday} - {horario.date}
                         <ButtonsContainer onClick={() => setarVariavel(props)}>
-                            <Link to={`/assentos/${horario.showtimes[0].id}`}><button>{horario.showtimes[0].name}</button> </Link>
-                            <Link to={`/assentos/${horario.showtimes[1].id}`}><button>{horario.showtimes[1].name}</button></Link>
+                            <Link data-test="showtime" to={`/assentos/${horario.showtimes[0].id}`}><button>{horario.showtimes[0].name}</button> </Link>
+                            <Link data-test="showtime" to={`/assentos/${horario.showtimes[1].id}`}><button>{horario.showtimes[1].name}</button></Link>
                         </ButtonsContainer>
                     </SessionContainer>)}
             </div>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     <img src={filme.url} alt="poster" />
                 </div>

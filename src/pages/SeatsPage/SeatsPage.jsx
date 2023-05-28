@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
-import ReactInputMask from "react-input-mask"
+
 
 export default function SeatsPage(props) {
     const navigate = useNavigate()
@@ -62,7 +62,7 @@ export default function SeatsPage(props) {
         <PageContainer>
             Selecione o(s) assento(s)
 
-            <SeatsContainer>
+            <SeatsContainer data-test="seat">
                 {AssentosIniciais.map((assento, index) =>
 
                     <SeatItem 
@@ -102,6 +102,7 @@ export default function SeatsPage(props) {
                 <label htmlFor="nome">Nome do Comprador:</label>
 
                 <input
+                    data-test="client-name"
                     id="nome"
                     name="nome"
                     type="text"
@@ -113,8 +114,8 @@ export default function SeatsPage(props) {
 
                 <label htmlFor="cpf">CPF do Comprador:</label>
 
-                <ReactInputMask
-                    
+                <input
+                    data-test="client-cpf"
                     id="cpf"
                     name="cpf"
                     placeholder="Digite seu CPF..."
@@ -124,10 +125,10 @@ export default function SeatsPage(props) {
                     required
                 />
 
-                <button onClick={() => setarVariavel(props)}>Reservar Assento(s)</button>
+                <button data-test="book-seat-btn" onClick={() => setarVariavel(props)}>Reservar Assento(s)</button>
             </FormContainer>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     <img src={horarios.movie.posterURL} alt="poster" />
                 </div>
