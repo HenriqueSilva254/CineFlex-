@@ -151,7 +151,7 @@ export default function SeatsPage(props) {
             cpf
         }
         const promisse = axios.post(url, dados)
-        promisse.then(resposta => navigate("/success") )
+        promisse.then(resposta => navigate("/sucesso") )
         promisse.catch(erro => alert(erro.response.data))
             
         console.log(props)        
