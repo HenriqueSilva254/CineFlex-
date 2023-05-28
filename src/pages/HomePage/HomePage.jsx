@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 
-export default function HomePage() {
+export default function HomePage(props) {
     const [filmes, setFilmes] = useState([])
-   
+    
+    
+    
     
 
 
@@ -15,7 +17,7 @@ export default function HomePage() {
 
         promisse.then(resposta => {
             setFilmes(resposta.data);
-            
+            props.set({filme:"", data:"", horario:"", assentos:[], name:"", cpf:""})
         });
         promisse.catch(erro => console.log(erro.response.data))
     }, []);

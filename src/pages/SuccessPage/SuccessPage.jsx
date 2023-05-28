@@ -1,34 +1,43 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SuccessPage() {
-
+export default function SuccessPage(props) {
+const info = props.info
+console.log(info)
     return (
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
 
             <TextContainer>
                 <strong><p>Filme e sessão</p></strong>
-                <p>Tudo em todo lugar ao mesmo tempo</p>
-                <p>03/03/2023 - 14:00</p>
+                <p>{info.filme}</p>
+                <p>{info.data} - {info.horario}</p>
             </TextContainer>
 
             <TextContainer>
                 <strong><p>Ingressos</p></strong>
-                <p>Assento 01</p>
-                <p>Assento 02</p>
-                <p>Assento 03</p>
+                {info.assentos.map(assentos => <p>Assento {assentos}</p>)}
             </TextContainer>
 
             <TextContainer>
                 <strong><p>Comprador</p></strong>
-                <p>Nome: Letícia Chijo</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {info.name}</p>
+                <p>CPF: {info.cpf}</p>
             </TextContainer>
 
-            <button>Voltar para Home</button>
+            <Link to="/"><Home>Voltar para Home</Home></Link>
         </PageContainer>
     )
 }
+const Home=styled.button`
+    width: 225px;
+    height: 42px;
+    left: 74px;
+    top: 622px;
+
+    background: #E8833A;
+    border-radius: 3px;
+`
 
 const PageContainer = styled.div`
     display: flex;
@@ -60,9 +69,7 @@ const PageContainer = styled.div`
 `
 const TextContainer = styled.div`
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    
     margin-top: 30px;
     strong {
         font-weight: bold;

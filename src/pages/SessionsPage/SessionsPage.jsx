@@ -3,11 +3,12 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SessionsPage() {
+
+export default function SessionsPage(props) {
     const [horarios, setHorarios] = useState(undefined)
     const [filme, setFilme] = useState("")
     const parametros = useParams()
-
+    console.log(props)
 
     useEffect(() => {
 
@@ -23,7 +24,11 @@ export default function SessionsPage() {
     }, [])
 
 
-
+    props.info.filme = `${filme.titulo}`
+    const [novasInfos, setnovasInfos] = [{...props.info}]
+    
+    console.log(props)
+    
 
 
     if (horarios === undefined) {
@@ -31,8 +36,10 @@ export default function SessionsPage() {
             <div>carregando asdas</div>
         )
     }
-    console.log(horarios)
-
+    
+    function setarVariavel(props){
+        props.set(novasInfos)
+    }
     return (
         <PageContainer>
             Selecione o horário
@@ -41,7 +48,7 @@ export default function SessionsPage() {
 
                     <SessionContainer key={horario.id}>
                         {horario.weekday} - {horario.date}
-                        <ButtonsContainer>
+                        <ButtonsContainer onClick={() => setarVariavel(props)}>
                             <Link to={`/assentos/${horario.showtimes[0].id}`}><button>{horario.showtimes[0].name}</button> </Link>
                             <Link to={`/assentos/${horario.showtimes[1].id}`}><button>{horario.showtimes[1].name}</button></Link>
                         </ButtonsContainer>

@@ -9,16 +9,16 @@ import { useState } from "react"
 
 export default function App() {
     axios.defaults.headers.common['Authorization'] = 'o2hJyOPv5oSM306RqN1u5Wbt';
-    const [Url, setUrl] = useState ("")
+    const [Informacoes, setInformacoes] = useState ({filme:"", data:"", horario:"", assentos:[], name:"", cpf:""})
     return (
         <BrowserRouter>
            <NavContainer>CINEFLEX</NavContainer>
 
             <Routes>
-                <Route path="/" element={<HomePage sabao='sabao'/>} />
-                <Route path="/sessoes/:idFilme" element={<SessionsPage />}/> 
-                <Route path="/assentos/:idHorario" element={<SeatsPage />} />
-                <Route path="/success" element={<SuccessPage />} />
+                <Route path="/" element={<HomePage set={setInformacoes}/>} />
+                <Route path="/sessoes/:idFilme" element={<SessionsPage info={Informacoes} set={setInformacoes} />}/> 
+                <Route path="/assentos/:idSessao" element={<SeatsPage info={Informacoes} set={setInformacoes}/>} />
+                <Route path="/success" element={<SuccessPage info={Informacoes}/>} />
             </Routes>
         </BrowserRouter>
     )
