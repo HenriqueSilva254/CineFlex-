@@ -62,10 +62,11 @@ export default function SeatsPage(props) {
         <PageContainer>
             Selecione o(s) assento(s)
 
-            <SeatsContainer data-test="seat">
+            <SeatsContainer>
                 {AssentosIniciais.map((assento, index) =>
 
                     <SeatItem 
+                    data-test="seat"
                     name={"teste"} 
                     disabled={!assento.isAvailable} 
                     onClick={(e) => MudarCorAssentos(index, assento)} 
