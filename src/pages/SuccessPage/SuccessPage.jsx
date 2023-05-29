@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 export default function SuccessPage(props) {
 const info = props.info
-console.log(info)
+
     return (
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
@@ -16,7 +16,7 @@ console.log(info)
 
             <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
-                {info.assentos.map(assentos => <p>Assento {assentos}</p>)}
+                {info.assentos.map(assentos => <p key={assentos}>Assento {assentos}</p>)}
             </TextContainer>
 
             <TextContainer data-test="client-info">

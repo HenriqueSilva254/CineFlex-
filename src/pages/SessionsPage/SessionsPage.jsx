@@ -8,7 +8,6 @@ export default function SessionsPage(props) {
     const [horarios, setHorarios] = useState(undefined)
     const [filme, setFilme] = useState("")
     const parametros = useParams()
-    console.log(props)
 
     useEffect(() => {
 
@@ -26,8 +25,6 @@ export default function SessionsPage(props) {
 
     props.info.filme = `${filme.titulo}`
     const [novasInfos, setnovasInfos] = [{...props.info}]
-    
-    console.log(props)
     
 
 

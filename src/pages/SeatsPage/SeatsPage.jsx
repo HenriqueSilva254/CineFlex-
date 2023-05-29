@@ -9,7 +9,7 @@ export default function SeatsPage(props) {
     const [horarios, setHorarios] = useState(undefined)
     const [color, setColor] = useState({ corBorda: "#808F9D", corFundo: "#C3CFD9",corBordaSelecionada:"#0E7D71", corFundoSelecionada:"#1AAE9E" });
     const [ids, setIds] = useState([])
-    const [AssentoRepetido, setAssentoRepetido] = useState([])
+    
     const parametros = useParams()
     const [name, setName] = useState([])
     const [cpf, setCpf] = useState([])
@@ -26,7 +26,7 @@ export default function SeatsPage(props) {
         promisse.then(props => {
             setHorarios(props.data)
             setAssentosIniciais(props.data.seats)
-            console.log(props)
+            
             //setFilme({ titulo: props.data.title, url: props.data.posterURL })
         })
         promisse.catch(erro => console.log(erro.response.data))
@@ -41,15 +41,12 @@ export default function SeatsPage(props) {
     }
    
     
-
-    console.log(horarios.name)
-    
     
     props.info.data = `${horarios.day.date}`
     props.info.horario = `${horarios.name}`  
     const [novasInfos, setnovasInfos] = [{...props.info}]
 
-    console.log(ids)
+  
 
     function setarVariavel(props){
         novasInfos.name = name
@@ -153,8 +150,7 @@ export default function SeatsPage(props) {
         const promisse = axios.post(url, dados)
         promisse.then(resposta => navigate("/sucesso") )
         promisse.catch(erro => alert(erro.response.data))
-            
-        console.log(props)        
+                 
 
     }
 

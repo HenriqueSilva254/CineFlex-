@@ -22,7 +22,6 @@ export default function HomePage(props) {
         promisse.catch(erro => console.log(erro.response.data))
     }, []);
 
-    console.log(filmes)
 
     return (
         <PageContainer>
@@ -72,4 +71,3 @@ const MovieContainer = styled.div`
         height: 190px;
     }
 `
-// onClick={setId(filme.id)}     props.url(id)
