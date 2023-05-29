@@ -45,7 +45,7 @@ export default function SeatsPage(props) {
     console.log(horarios.name)
     
     
-    props.info.data = `${horarios.day.weekday}`
+    props.info.data = `${horarios.day.date}`
     props.info.horario = `${horarios.name}`  
     const [novasInfos, setnovasInfos] = [{...props.info}]
 
@@ -68,8 +68,8 @@ export default function SeatsPage(props) {
                     <SeatItem 
                     data-test="seat"
                     name={"teste"} 
-                    disabled={!assento.isAvailable} 
-                    onClick={(e) => MudarCorAssentos(index, assento)} 
+                     
+                    onClick={(e) => AssentosOcupados(index, assento)} 
                     habilitar={assento.isAvailable} 
                     corBorda={color.corBorda} 
                     corFundo={color.corFundo} 
@@ -158,6 +158,11 @@ export default function SeatsPage(props) {
 
     }
 
+    function AssentosOcupados(i, props){
+        if(props.isAvailable === false){
+            alert('Este assento está ocupado')
+        }else{MudarCorAssentos(i, props)}
+    }
     function MudarCorAssentos(i, props) {
         const teste = [...AssentosIniciais]
         teste[i].cor = "True"
